@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-
+import { Link } from '@tanstack/react-router'
 export default function ExpensesList() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['expenses'],
@@ -11,15 +11,16 @@ export default function ExpensesList() {
   }) 
   if (isLoading) return <p className="text-sm text-gray-500">Loading…</p>
   if (isError) return <p className="text-sm text-red-600">{(error as Error).message}</p>
-  
   return (
+    <>
     <ul className="mt-4 space-y-2">
       {data!.expenses.map((e) => (
-        <li key={e.id} className="flex items-center justify-between rounded border bg-white p-3 shadow-sm">
+        <Link to={`/expenses/${e.id}`} key={e.id} className="flex items-center justify-between rounded border bg-white p-3 shadow-sm">
           <span className="font-medium">{e.title}</span>
           <span className="tabular-nums">${e.amount}</span>
-        </li>
+        </Link>
       ))}
     </ul>
+    </>
   )
 }
