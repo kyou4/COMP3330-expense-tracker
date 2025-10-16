@@ -54,7 +54,7 @@ export default function AddExpenseForm() {
         onChange={(e) => setAmount(e.target.value === '' ? '' : Number(e.target.value))}
         required
       />
-      <button className="rounded bg-black px-4 py-2 text-white disabled:opacity-50" disabled={createExpense.isPending}>
+      <button  className="rounded border px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-40" disabled={createExpense.isPending}>
         {createExpense.isPending ? 'Adding…' : 'Add'}
       </button>
     </form>
